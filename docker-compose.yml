@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+  book-catalog:
+    image: book-catalog:1
+    build: 
+      context: ./book_catalog
+      dockerfile: Dockerfile
+    container_name: book-catalog
+    ports:
+      - "8081:8081"
+    environment:
+      - PORT=8081
+      - DATABASE_URL=postgresql://project5_lub9_user:etcQySIYY1Wl2eYXTFzOXJX50VV7xrPj@dpg-crmcdaq3esus73fqts5g-a.oregon-postgres.render.com/project5_lub9
+    restart: always
+
+  inventory-management:
+    image: inventory-management:1
+    build: 
+      context: ./inventory_management
+      dockerfile: Dockerfile
+    container_name: inventory-management
+    ports:
+     - "8082:8082"
+    environment:
+      - PORT=8082
+      - DATABASE_URL=postgresql://project5_lub9_user:etcQySIYY1Wl2eYXTFzOXJX50VV7xrPj@dpg-crmcdaq3esus73fqts5g-a.oregon-postgres.render.com/project5_lub9
+    restart: always
